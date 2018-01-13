@@ -15,13 +15,9 @@ class RandomWalk():
 
         # 不断漫步，直到列表的达到指定的长度
         while  len(self.x_values) < self.num_points:
-            x_direction = choice([1, -1])
-            x_distance = choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
-            x_step = x_direction * x_distance
+            x_step = self.get_step()
 
-            y_direction = choice([1, -1])
-            y_distance = choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
-            y_step = y_direction * y_distance
+            y_step = self.get_step()
 
             # 拒绝原地踏步
             if x_step == 0 and y_step == 0:
@@ -37,3 +33,9 @@ class RandomWalk():
             self.x_values.append(next_x)
             self.y_values.append(next_y)
 
+    def get_step(self):
+        """去顶每次漫步的距离和方向，并计算这次漫步将如何移动"""
+        direction = choice([1, -1])
+        distance = choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
+        step = direction * distance
+        return step
