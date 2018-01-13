@@ -6,8 +6,8 @@ from random_walk import RandomWalk
 while True:
     # 创建一个RandomWalk实例，并将其包含的点都绘制出来
     # 增加点数,运行时间也会变长
-    # rw = RandomWalk(50000)
-    rw = RandomWalk()
+    rw = RandomWalk(5000)
+    # rw = RandomWalk()
     rw.fill_walk()
 
     # 设置窗口的尺寸
@@ -17,7 +17,10 @@ while True:
     plt.figure(dpi = 128, figsize = (10, 6))
 
     point_numbers = list(range(rw.num_points))
-    plt.scatter(rw.x_values, rw.y_values, c = point_numbers, cmap = plt.cm.Blues, edgecolor='none', s = 1)
+    # 随机漫步
+    # plt.scatter(rw.x_values, rw.y_values, c = point_numbers, cmap = plt.cm.Blues, edgecolor='none', s = 1)
+    # 分子运动
+    plt.plot(rw.x_values, rw.y_values, linewidth=5 )
 
     # 突出起点和终点
     plt.scatter(0, 0, c = 'green', edgecolor='none', s = 100)

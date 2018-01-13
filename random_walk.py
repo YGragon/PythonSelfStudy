@@ -16,15 +16,18 @@ class RandomWalk():
         # 不断漫步，直到列表的达到指定的长度
         while  len(self.x_values) < self.num_points:
             x_direction = choice([1, -1])
-            x_distance = choice([0, 1, 2, 3, 4])
+            x_distance = choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
             x_step = x_direction * x_distance
 
             y_direction = choice([1, -1])
-            y_distance = choice([0, 1, 2, 3, 4])
+            y_distance = choice([0, 1, 2, 3, 4, 5, 6, 7, 8])
             y_step = y_direction * y_distance
 
             # 拒绝原地踏步
             if x_step == 0 and y_step == 0:
+                continue
+            # 去除 -1 的值
+            if x_step == -1 and y_step == -1:
                 continue
 
             # 计算下一个点的x值和y值
