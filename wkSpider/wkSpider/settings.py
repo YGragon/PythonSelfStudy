@@ -14,6 +14,8 @@ BOT_NAME = 'wkSpider'
 SPIDER_MODULES = ['wkSpider.spiders']
 NEWSPIDER_MODULE = 'wkSpider.spiders'
 
+# 设置日志的显示等级
+LOG_LEVEL = 'ERROR'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'wkSpider (+http://www.yourdomain.com)'

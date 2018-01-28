@@ -5,14 +5,12 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-from scrapy import Item, Field
 import scrapy
 
-class WkspiderItem(scrapy.Item):
+from scrapy import Item, Field
+
+
+class Article(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
-
-class Article(Item):
-    """docstring for Article"""
     title = Field()
