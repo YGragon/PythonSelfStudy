@@ -11,9 +11,14 @@ from zipfile import ZipFile
 from io import BytesIO
 from bs4 import BeautifulSoup
 
+# 可视化
+import pygal
+from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
+
 import csv
 import json
 import requests
+
 
 def get_text():
     textPage = urlopen("http://www.pythonscraping.com/pages/warandpeace/chapter1.txt")
@@ -60,9 +65,36 @@ def get_gank_info(ipaddress):
     """
     r = requests.get(ipaddress)
     r = r.json()
+
     results = r['results']
-    for result_name in results:
-        print(result_name['who'])
+    names, counts = [], []
+    count = 1
+    for result in results:
+        name = result['who']
+        if name != 'None':
+            if name in names:
+                count = count + 1
+                counts.append(count)
+                print("有-1----"+str(name))
+                print("count-1----"+str(count))
+            else:
+                count = 1
+                names.append(name)
+                counts.append(count)
+                print("没有-2---------"+str(name))
+                print("count-2---------"+str(count))
+
+
+
+
+
+    my_style = LS('#333366', base_style=LCS)
+    chart = pygal.Bar(style=my_style, x_label_rotation=45, show_lengend=False)
+    chart.title = "哪种干货数据最多、谁提供的最多"
+    chart.x_labels = names
+
+    chart.add('',counts)
+    chart.render_to_file('gank_most_post_type.svg')
 
 
 # get_text()
@@ -78,4 +110,4 @@ def get_gank_info(ipaddress):
 # 读取 docx
 # read_docx()
 
-get_gank_info("http://gank.io/api/data/Android/10/1")
+get_gank_info("http://gank.io/api/data/all/30/1")
