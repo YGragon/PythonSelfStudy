@@ -12,6 +12,8 @@ from io import BytesIO
 from bs4 import BeautifulSoup
 
 import csv
+import json
+import requests
 
 def get_text():
     textPage = urlopen("http://www.pythonscraping.com/pages/warandpeace/chapter1.txt")
@@ -51,6 +53,18 @@ def read_docx():
     for textElem in textStrings:
         print(textElem.text)
 
+
+def get_gank_info(ipaddress):
+    """
+    获取干货集中营的数据
+    """
+    r = requests.get(ipaddress)
+    r = r.json()
+    results = r['results']
+    for result_name in results:
+        print(result_name['who'])
+
+
 # get_text()
 
 # get_csv()
@@ -62,4 +76,6 @@ def read_docx():
 # pdfFile.close()
 
 # 读取 docx
-read_docx()
+# read_docx()
+
+get_gank_info("http://gank.io/api/data/Android/10/1")
