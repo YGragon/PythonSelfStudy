@@ -1,7 +1,6 @@
 class Author(object):
     """docstring for Author"""
-    def __init__(self, who, post_count):
-        super(Author, self).__init__()
-        self.arg = arg
-        self.who = who
+    def __init__(self, name, post_count):
+        self.name = name
         self.post_count = post_count
+        self.post_count = 1

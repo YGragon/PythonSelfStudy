@@ -12,6 +12,7 @@ from io import BytesIO
 from bs4 import BeautifulSoup
 
 # 可视化
+from author import Author
 import pygal
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 
@@ -67,26 +68,35 @@ def get_gank_info(ipaddress):
     r = r.json()
 
     results = r['results']
-    names, counts = [], []
-    count = 1
+
+    authors, names, counts = [], [], []
+    # 得到所有作者
     for result in results:
         name = result['who']
-        if name != 'None':
-            if name in names:
-                count = count + 1
-                counts.append(count)
-                print("有-1----"+str(name))
-                print("count-1----"+str(count))
-            else:
-                count = 1
-                names.append(name)
-                counts.append(count)
-                print("没有-2---------"+str(name))
-                print("count-2---------"+str(count))
+        if name != 'None' and name != 'null':
+            names.append(name)
 
+    print(str(names))
 
+    for name in names:
+        user = {'name':'dong','count':1}
+        if user['name'] in names:
+            user['count'] = names.count(str(user['name']))
+            print(str(user['count']))
+        else:
+            user['count'] = 1
+            user['name'] = name
+            print(str(user['name']))
+            authors.append(user)
 
+        # count = names.count(str(name))
+        # counts.append(count)
+        # print(str(count))
+        # print(str(name))
+    for use in authors:
+        print(use)
 
+    print("count---->"+str(counts))
 
     my_style = LS('#333366', base_style=LCS)
     chart = pygal.Bar(style=my_style, x_label_rotation=45, show_lengend=False)
