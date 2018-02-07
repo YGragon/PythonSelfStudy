@@ -76,32 +76,23 @@ def get_gank_info(ipaddress):
         if name != 'None' and name != 'null':
             names.append(name)
 
-    print(str(names))
 
-    for name in names:
-        user = {'name':'dong','count':1}
-        if user['name'] in names:
-            user['count'] = names.count(str(user['name']))
-            print(str(user['count']))
-        else:
-            user['count'] = 1
-            user['name'] = name
-            print(str(user['name']))
-            authors.append(user)
+    count = {}
+    for i in names:
+        # 和 get() 方法类似, 如果键不存在于字典中，将会添加键并将值设为默认值
+        count[i] = count.setdefault(i,0)
+        count[i] += 1
 
-        # count = names.count(str(name))
-        # counts.append(count)
-        # print(str(count))
-        # print(str(name))
-    for use in authors:
-        print(use)
+    for k, v in count.items():
+        authors.append(str(k))
+        counts.append(v)
+        print(str(k) + ' : ' + str(v))
 
-    print("count---->"+str(counts))
 
     my_style = LS('#333366', base_style=LCS)
     chart = pygal.Bar(style=my_style, x_label_rotation=45, show_lengend=False)
-    chart.title = "哪种干货数据最多、谁提供的最多"
-    chart.x_labels = names
+    chart.title = "谁提供的干货数据最多"
+    chart.x_labels = authors
 
     chart.add('',counts)
     chart.render_to_file('gank_most_post_type.svg')
@@ -120,4 +111,4 @@ def get_gank_info(ipaddress):
 # 读取 docx
 # read_docx()
 
-get_gank_info("http://gank.io/api/data/all/30/1")
+get_gank_info("http://gank.io/api/data/all/300/1")
