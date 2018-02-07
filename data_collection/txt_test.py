@@ -80,6 +80,8 @@ def get_gank_info(ipaddress):
     count = {}
     for i in names:
         # 和 get() 方法类似, 如果键不存在于字典中，将会添加键并将值设为默认值
+        # key -- 查找的键值。
+        # default -- 键不存在时，设置的默认键值
         count[i] = count.setdefault(i,0)
         count[i] += 1
 
@@ -91,7 +93,7 @@ def get_gank_info(ipaddress):
 
     my_style = LS('#333366', base_style=LCS)
     chart = pygal.Bar(style=my_style, x_label_rotation=45, show_lengend=False)
-    chart.title = "谁提供的干货数据最多"
+    chart.title = "300条干货数据谁提供的最多"
     chart.x_labels = authors
 
     chart.add('',counts)
