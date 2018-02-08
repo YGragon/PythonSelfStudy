@@ -84,6 +84,7 @@ def get_gank_info(ipaddress):
         # default -- 键不存在时，设置的默认键值
         count[i] = count.setdefault(i,0)
         count[i] += 1
+        print(count[i])
 
     for k, v in count.items():
         authors.append(str(k))
