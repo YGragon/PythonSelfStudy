@@ -9,19 +9,11 @@ for i in range(1,5):
     for j in range(1,5):
         for k in range(1,5):
             if (i != j) and (j != k) and (k != i):
-                count.append([i,j,k])
+                count.append(int(str(i)+str(j)+str(k)))
 
 print("count len is :",len(count))
 print("count max is :",max(count))
 print("count min is :",min(count))
-maxs = max(count)
-for i in maxs:
-    print(i,end="")
 
-print("")
-mins = min(count)
-for i in mins:
-    print(i,end="")
 
-print("")
 
