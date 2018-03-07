@@ -84,12 +84,13 @@ def get_gank_info(ipaddress):
         # default -- 键不存在时，设置的默认键值
         count[i] = count.setdefault(i,0)
         count[i] += 1
-        print(count[i])
+        # print(count[i])
 
     for k, v in count.items():
-        authors.append(str(k))
-        counts.append(v)
-        print(str(k) + ' : ' + str(v))
+        if v >= 5:
+            authors.append(str(k))
+            counts.append(v)
+            print(str(k) + ' : ' + str(v))
 
 
     my_style = LS('#333366', base_style=LCS)
@@ -114,4 +115,4 @@ def get_gank_info(ipaddress):
 # 读取 docx
 # read_docx()
 
-get_gank_info("http://gank.io/api/data/all/300/1")
+get_gank_info("http://gank.io/api/data/all/1000/1")
